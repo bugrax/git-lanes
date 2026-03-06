@@ -31,9 +31,9 @@ export function loadConfig(repoRoot: string): LanesConfig {
   }
 
   try {
-    const raw = Bun.file(configPath);
-    const text = raw.size > 0 ? JSON.parse(raw.toString()) : {};
-    return mergeConfig(text);
+    const content = require("fs").readFileSync(configPath, "utf-8");
+    const parsed = JSON.parse(content);
+    return mergeConfig(parsed);
   } catch {
     // Return defaults on parse error
     return { ...DEFAULT_CONFIG };
@@ -72,5 +72,5 @@ export function getConfigPath(repoRoot: string): string {
 }
 
 export function getDefaultConfig(): LanesConfig {
-  return { ...DEFAULT_CONFIG };
+  return { ...DEFAULT_CONFIG, shared_dirs: [...DEFAULT_CONFIG.shared_dirs] };
 }

@@ -1,7 +1,7 @@
 import { existsSync, mkdirSync, readdirSync, unlinkSync } from "fs";
-import { join, basename } from "path";
+import { join, basename, resolve } from "path";
 import { withLock } from "./utils/lock.ts";
-import { getGitCommonDir } from "./git.ts";
+import { getGitCommonDir, getRepoRoot } from "./git.ts";
 
 const MANIFEST_VERSION = 1;
 const MANIFESTS_DIR = "lanes-manifests";
@@ -30,8 +30,11 @@ export interface SessionManifest {
  * Located inside the git common directory to be shared across worktrees.
  */
 export function getManifestsDir(cwd?: string): string {
+  const repoRoot = getRepoRoot(cwd);
   const commonDir = getGitCommonDir(cwd);
-  return join(commonDir, MANIFESTS_DIR);
+  // Resolve common dir relative to repo root (it may be relative like ".git")
+  const resolvedCommonDir = resolve(repoRoot, commonDir);
+  return join(resolvedCommonDir, MANIFESTS_DIR);
 }
 
 /**
