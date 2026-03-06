@@ -1,8 +1,43 @@
 {
   "name": "git-lanes",
-  "module": "index.ts",
+  "version": "0.1.0",
+  "description": "Parallel AI agent isolation for Git repositories",
   "type": "module",
-  "private": true,
+  "bin": {
+    "git-lanes": "./bin/git-lanes"
+  },
+  "scripts": {
+    "dev": "bun run src/cli.ts",
+    "build": "bun build src/cli.ts --outdir dist --target bun",
+    "test": "bun test",
+    "test:unit": "bun test test/unit",
+    "test:integration": "bun test test/integration",
+    "test:security": "bun test test/security",
+    "test:e2e": "bun test test/e2e",
+    "test:stress": "bun test test/stress",
+    "test:all": "bun test",
+    "lint": "bunx --bun tsc --noEmit"
+  },
+  "keywords": [
+    "git",
+    "ai",
+    "agent",
+    "parallel",
+    "isolation",
+    "worktree",
+    "claude",
+    "cursor",
+    "aider"
+  ],
+  "license": "MIT",
+  "engines": {
+    "bun": ">=1.0.0"
+  },
+  "files": [
+    "dist/",
+    "bin/",
+    "adapters/"
+  ],
   "devDependencies": {
     "@types/bun": "latest"
   },

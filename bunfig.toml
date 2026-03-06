@@ -1,0 +1,7 @@
+[test]
+root = "./test"
+preload = []
+timeout = 30000
+
+[install]
+peer = true
