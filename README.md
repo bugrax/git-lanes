@@ -1,22 +1,27 @@
-# git-lanes
+# 🛣️ git-lanes
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Built with Bun](https://img.shields.io/badge/Built%20with-Bun-orange)](https://bun.sh)
+[![npm](https://img.shields.io/npm/v/git-lanes)](https://www.npmjs.com/package/git-lanes)
 
 **Parallel AI agent isolation for Git repositories.**
 
 git-lanes enables multiple AI coding agents (Claude Code, Cursor, Aider) to work simultaneously on the same Git repository without creating conflicts. Each agent gets its own isolated lane — a dedicated branch and worktree — so they never step on each other's work.
 
+## 🎬 Demo
+
+[![asciicast](https://asciinema.org/a/ZpEp41hSXZZ6yPTg.svg)](https://asciinema.org/a/ZpEp41hSXZZ6yPTg)
+
 ## Table of Contents
 
 - [Problem](#problem)
-- [Features](#features)
-- [Installation](#installation)
-- [Quick Start](#quick-start)
-- [Commands](#commands)
-- [Configuration](#configuration)
-- [Adapter Support](#adapter-support)
-- [Architecture](#architecture)
+- [Features](#-features)
+- [Installation](#-installation)
+- [Quick Start](#-quick-start)
+- [Commands](#-commands)
+- [Configuration](#-configuration)
+- [Adapter Support](#-adapter-support)
+- [Architecture](#-architecture)
 - [Requirements](#requirements)
 - [Contributing](#contributing)
 - [License](#license)
@@ -31,19 +36,19 @@ When multiple AI agents edit code simultaneously in a repository, they:
 
 git-lanes solves this by giving each agent its own isolated workspace with automatic change tracking, conflict detection, and clean PR generation.
 
-## Features
+## 🚀 Features
 
-- **Session Isolation** — Each agent gets a dedicated Git worktree and branch, mapped by process ID
-- **Change Tracking** — Automatic tracking of file modifications with commit history
-- **Conflict Detection** — Built-in detection of file overlaps across active sessions with resolution suggestions
-- **Work Preservation** — Auto-checkpoint captures work during timeouts or crashes via WIP commits
-- **Clean PR Generation** — Squash incremental edits into reviewable commits and generate pull requests
-- **Multi-Adapter Support** — Hooks for Claude Code, Cursor, and Aider
-- **Multi-Forge PRs** — Create pull requests on GitHub, GitLab, or Bitbucket
-- **File Locking** — Prevent race conditions with atomic manifest operations
-- **Zero Dependencies** — Uses only Bun built-ins, no external runtime packages
+- **🔀 Session Isolation** — Each agent gets a dedicated Git worktree and branch, mapped by process ID
+- **📝 Change Tracking** — Automatic tracking of file modifications with commit history
+- **⚠️ Conflict Detection** — Built-in detection of file overlaps across active sessions with resolution suggestions
+- **💾 Work Preservation** — Auto-checkpoint captures work during timeouts or crashes via WIP commits
+- **🧹 Clean PR Generation** — Squash incremental edits into reviewable commits and generate pull requests
+- **🔌 Multi-Adapter Support** — Hooks for Claude Code, Cursor, and Aider
+- **🌐 Multi-Forge PRs** — Create pull requests on GitHub, GitLab, or Bitbucket
+- **🔒 File Locking** — Prevent race conditions with atomic manifest operations
+- **📦 Zero Dependencies** — Uses only Bun built-ins, no external runtime packages
 
-## Installation
+## 📥 Installation
 
 ```bash
 # Install globally
@@ -53,7 +58,7 @@ bun install -g git-lanes
 bunx git-lanes <command>
 ```
 
-## Quick Start
+## ⚡ Quick Start
 
 ```bash
 # 1. Start a session
@@ -78,7 +83,7 @@ git lanes pr --title "Add search feature with fuzzy matching"
 git lanes end
 ```
 
-## Commands
+## 🛠️ Commands
 
 ### Session Management
 
@@ -134,7 +139,7 @@ git lanes end
 | `--adapter, -a <name>` | Hook adapter: `claude-code`, `cursor`, `aider` |
 | `--command, -c <cmd>` | Test command override |
 
-## Configuration
+## ⚙️ Configuration
 
 Create a `.lanes.json` file in your repository root:
 
@@ -156,7 +161,7 @@ Create a `.lanes.json` file in your repository root:
 | `adopt_changes` | `always`, `never`, `prompt` | `always` | Uncommitted change adoption |
 | `branch_prefix` | string | `lanes/` | Prefix for session branches |
 
-## Adapter Support
+## 🔌 Adapter Support
 
 ### Claude Code
 
@@ -182,7 +187,7 @@ git lanes install-hooks --adapter aider
 
 Installs pre-edit hooks to ensure session isolation.
 
-## Architecture
+## 🏗️ Architecture
 
 git-lanes uses Git's native worktree feature to create isolated workspaces:
 
